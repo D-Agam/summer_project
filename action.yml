@@ -1,0 +1,29 @@
+name: ansible-lint
+on:
+  pull_request:
+    branches: ["sample"]
+
+jobs:
+  build:
+    name: Ansible Lint # Naming the build is important to use it as a status check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: run-ansible-lint
+        uses: ansible/ansible-lint-action@v5.2.0
+
+  example:
+    runs-on: ubuntu-latest
+    steps:
+      - name: open-pull-request
+        id: open_pr
+        uses: rematocorp/open-pull-request-action@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          from-branch: change_this
+          to-branch: change_this
+          repository-owner: change_this
+          repository: change_this
+          
+      - name: Echo mergeable PR number
+        run: echo ${{ steps.open_pr.outputs.pull_number }}
