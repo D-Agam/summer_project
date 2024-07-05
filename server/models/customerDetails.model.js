@@ -16,6 +16,10 @@ const customerSchema = new Schema({
     loginDetails: {
         type: Schema.Types.ObjectId,
         ref: 'LoginDetails',
+    },
+    documentDetails: {
+        type: Schema.Types.ObjectId,
+        ref: 'DocumentDetails',
     }
 }, {
     timestamps: true

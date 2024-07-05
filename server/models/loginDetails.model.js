@@ -22,6 +22,10 @@ const passwordValidator = (password) => {
 
 // Login details schema definition
 const loginDetailsSchema = new Schema({
+    customerId:{
+        type: Schema.Types.ObjectId,
+        ref: 'Customer',
+    },
     username: {
         type: String,
         required: [true, 'Username is required'],

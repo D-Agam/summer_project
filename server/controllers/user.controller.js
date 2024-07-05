@@ -56,6 +56,7 @@ const registerUser = asyncHandler(async (req, res) => {
         throw new ApiError(400, "password and confirmPassword doesn't match");
     }
     const user = await LoginDetails.create({
+        customerId,
         username: username.toLowerCase(),
         password
 
