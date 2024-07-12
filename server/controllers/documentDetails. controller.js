@@ -17,24 +17,42 @@ const documentsUpload = asyncHandler(async (req, res) => {
         throw new ApiError(400, 'Customer not found');
     }
 
-    const customerDocumentLocalPath = req.files?.customerDocument?.[0]?.path;
-    if (!customerDocumentLocalPath) {
+    const customerDocument1LocalPath = req.files?.customerDocument1?.[0]?.path;
+    const customerDocument2LocalPath = req.files?.customerDocument2?.[0]?.path;
+    console.log(customerDocument1LocalPath);
+    console.log(customerDocument2LocalPath);
+    if (!customerDocument1LocalPath) {
+        throw new ApiError(400, 'Customer document file is required');
+    }
+    if (!customerDocument2LocalPath) {
         throw new ApiError(400, 'Customer document file is required');
     }
 
-    let document;
+    let document1;
     try {
-        document = await uploadOnCloudinary(customerDocumentLocalPath);
+        document1 = await uploadOnCloudinary(customerDocument1LocalPath);
     } catch (error) {
         throw new ApiError(500, 'Error uploading document to Cloudinary');
     }
 
-    if (!document) {
+    if (!document1) {
         throw new ApiError(500, 'Error uploading document to Cloudinary');
     }
 
+    let document2;
+    try {
+        document2 = await uploadOnCloudinary(customerDocument2LocalPath);
+    } catch (error) {
+        throw new ApiError(500, 'Error uploading document to Cloudinary');
+    }
+
+    if (!document2) {
+        throw new ApiError(500, 'Error uploading document to Cloudinary');
+    }
+    
     const savedDocument = await DocumentDetails.create({
-        customerDocument: document.url,
+        customerDocument1: document1.url,
+        customerDocument2: document2.url,
     });
 
     if (!savedDocument) {

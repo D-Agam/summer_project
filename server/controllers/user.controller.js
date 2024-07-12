@@ -132,10 +132,12 @@ const loginUser = asyncHandler(async (req, res) => {
 
 })
 
-const changeCurrentPassword = asyncHandler(async(req, res) => {
-    const {oldPassword, newPassword} = req.body
+const changeCurrentPassword = asyncHandler(async (req, res) => {
+    const { oldPassword, newPassword,confirmPassword } = req.body
 
-    
+    if(newPassword!==confirmPassword) {
+        throw new ApiError(400,"password conflict");
+    }
 
     const user = await LoginDetails.findById(req.user?._id)
     const isPasswordCorrect = await LoginDetails.isPasswordCorrect(oldPassword)
@@ -145,11 +147,11 @@ const changeCurrentPassword = asyncHandler(async(req, res) => {
     }
 
     user.password = newPassword
-    await user.save({validateBeforeSave: false})
+    await user.save({ validateBeforeSave: false })
 
     return res
-    .status(200)
-    .json(new ApiResponse(200, {}, "Password changed successfully"))
+        .status(200)
+        .json(new ApiResponse(200, {}, "Password changed successfully"))
 })
 
 const logoutUser = asyncHandler(async (req, res) => {
@@ -224,4 +226,4 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
 
 })
 
-export { registerUser, loginUser, logoutUser, refreshAccessToken };
+export { registerUser, loginUser, logoutUser, refreshAccessToken, changeCurrentPassword };
