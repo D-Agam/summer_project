@@ -1,0 +1,53 @@
+body {
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+
+/* Progress Bar  */
+
+
+
+.progress-container {
+    width: 80%;
+    background-color: #ddd;
+    border-radius: 25px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    margin-top: 1cm;
+    margin-left: 4.5cm;
+}
+
+.progress-bar {
+    height: 7px;
+    width: 0%;
+    background-color: #af4caa;
+    border-radius: 25px;
+    transition: width 0.4s ease;
+}
+
+.button_container {
+    width: 100%;
+}
+
+.continue_button {
+    padding: 12px 20px;
+    display: block;
+    margin: auto;
+}
+
+/* App.css */
+
+/* App.css */
+
+.form-container {
+    width: 100%;
+    max-width: 700px;
+    min-height: 400px; /* Reduced the height */
+    margin: auto;
+  }
+  
