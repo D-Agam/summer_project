@@ -5,9 +5,3 @@ COPY . .
 EXPOSE 8081
 CMD node server.js
 
-# Below code is image of Frontend
-# FROM node:alpine
-# WORKDIR /app
-# COPY . .
-# EXPOSE 8080
-# CMD npm start

@@ -1,0 +1,6 @@
+# Below code is image of Frontend
+FROM node:alpine
+WORKDIR /app
+COPY . .
+EXPOSE 8080
+CMD npm start
