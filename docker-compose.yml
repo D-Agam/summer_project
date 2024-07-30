@@ -1,0 +1,33 @@
+version: '3'
+services:
+  frontend:
+    build:
+      context: ./Frontend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:3000"
+    depends_on:
+      - backend
+    restart: always
+  
+  backend:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - "8081:3001"
+    depends_on:
+      - mongodb
+    restart: always
+
+  mongodb:
+    image: mongo:latest
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=Seven
+      - MONGO_INITDB_ROOT_PASSWORD=SE7
+      - MONGO_INITDB_DATABASE=careerhub
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./mongo_data:/data/db
+    restart: always
