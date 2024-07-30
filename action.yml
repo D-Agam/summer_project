@@ -20,10 +20,10 @@ jobs:
         uses: rematocorp/open-pull-request-action@v1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          from-branch: change_this
-          to-branch: change_this
-          repository-owner: change_this
-          repository: change_this
+          from-branch: sample
+          to-branch: main
+          repository-owner: D-Agam
+          repository: summer_project
           
       - name: Echo mergeable PR number
         run: echo ${{ steps.open_pr.outputs.pull_number }}
