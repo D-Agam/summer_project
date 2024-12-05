@@ -1,0 +1,7 @@
+# Below code is image of Backend and goes to server folder
+FROM node:alpine
+WORKDIR /app
+COPY . .
+EXPOSE 8081
+CMD node server.js
+
